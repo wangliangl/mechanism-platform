@@ -9,7 +9,7 @@ namespace App\Http\Controllers;
 
 
 
-class UserInfoController extends BaseController{
+class DepartmentController extends BaseController{
 
     public function index(){
 
