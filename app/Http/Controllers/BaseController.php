@@ -21,7 +21,10 @@ class BaseController extends LumenController
             'data' => (Object)$data
         ];
 
-        return response()->json($responseData);
+        return response()->json($responseData)
+            ->withHeaders([
+                'Content-Type' => 'application/json;charset=UTF-8'
+            ]);
     }
 
     protected function throwValidationException(Request $request, $validator)
