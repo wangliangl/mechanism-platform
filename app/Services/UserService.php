@@ -7,7 +7,7 @@ use App\Enum\Code;
 use App\Exceptions\ApiException;
 use GuzzleHttp\Client;
 
-class userservice extends baseservice
+class userservice extends BaseService
 {
 
     public function getCaptchaByMobile(array $input): bool
