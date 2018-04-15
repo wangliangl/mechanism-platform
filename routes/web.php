@@ -28,6 +28,7 @@ $router->group(['prefix' => 'userinfo'], function () use ($router) {
     $router->post('del', 'UserinfoController@delete');
 });
 
+/*********************** 部门相关 *************************/
 $router->group(['prefix' => 'department'], function () use ($router) {
     $router->get('index', 'DepartmentController@index');
     $router->post('add', 'DepartmentController@add');
