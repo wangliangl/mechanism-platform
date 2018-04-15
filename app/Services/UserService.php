@@ -13,23 +13,27 @@ class UserService extends BaseService
     public function getCaptchaByMobile(array $input): bool
     {
         $mobile = $input['mobile'];
-        $this->buildParams($mobile);
+        return $this->getCaptcha($mobile);
 
     }
 
-    private function buildParams(int $mobile)
+    private function getCaptcha(int $mobile)
     {
-        $client = new Client(['base_uri' => Code::VFCODE['host']]);
+        $code = rand(100000, 999999);
         $params = [
-            'code' => rand(100000, 999999),
-            'mobile' => $mobile
+            'mobile' => (string)$mobile,
+            'param'  => 'code:' . $code,
+            'tpl_id' => 'TP1711063'
         ];
-
-        $a = $client->request('get', Code::VFCODE['route'], [
-            'headers' => Code::VFCODE['headers']
-        ], $params);
-        dd($a);
-
+        $client = new Client(['headers' => Code::VFCODE['headers']]);
+        $request = $client->request('post',
+            Code::VFCODE['host'] . Code::VFCODE['route'] . '?' . http_build_query($params));
+        $request = json_decode($request->getBody()->getContents(), true);
+        if ($request['return_code'] == '00000') {
+            setUserCode($mobile, $code);
+            return true;
+        }
+        return false;
     }
 
     public function register(array $input): bool
@@ -48,7 +52,7 @@ class UserService extends BaseService
             throw new ApiException("Captcha error", 20101);
         }
 
-
+        //todo 插入表
 
     }
 }

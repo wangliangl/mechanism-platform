@@ -27,7 +27,9 @@ class UserController extends BaseController
             'mobile' => 'required | unique:user,mobile|integer | min: 11'
         ]);
 
-        return $this->userService->getCaptchaByMobile($request->all());
+        return $this->userService->getCaptchaByMobile($request->all()) ?
+            $this->success() :
+            $this->failed('发送失败');
     }
 
     public function register(Request $request)
@@ -40,6 +42,8 @@ class UserController extends BaseController
             'password' => 'required | string'
         ]);
 
-        return $this->userService->register($request->all()) ? $this->success() : $this->failed('注册失败');
+        return $this->userService->register($request->all()) ?
+            $this->success() :
+            $this->failed('注册失败');
     }
 }
