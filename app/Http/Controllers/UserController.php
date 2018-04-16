@@ -10,7 +10,6 @@ namespace App\Http\Controllers;
 
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 
 class UserController extends BaseController
 {
