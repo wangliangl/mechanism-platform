@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class userservice extends baseservice
+class UserInfoService extends baseservice
 {
 
 }

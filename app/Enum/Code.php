@@ -11,10 +11,8 @@ namespace App\Enum;
 class Code
 {
     const VFCODE = [
-        'host' => 'http://smsapi.api51.cn',
-        'route' => '/code',
-        'headers' => [
-            'Authorization:APPCODE' => 'c43a7bbd0eed4ef6a088fafb683aa302'
-        ]
+        'host' => 'http://dingxin.market.alicloudapi.com',
+        'route' => '/dx/sendSms',
+        'headers' => ['Authorization' => 'APPCODE e2b36e097fd94f5b86da4fc088cac4ff']
     ];
 }

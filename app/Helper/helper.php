@@ -17,6 +17,6 @@ if (! function_exists("setUserCode"))
 {
     function setUserCode (int $mobile, int $code)
     {
-        return \Illuminate\Support\Facades\Redis::setex("user_code:".$mobile, $code, 300);
+        return \Illuminate\Support\Facades\Redis::setex("user_code:".$mobile, 600, $code);
     }
 }
