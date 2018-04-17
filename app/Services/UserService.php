@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Enum\Code;
 use App\Exceptions\ApiException;
+use App\Models\UserModel;
 use GuzzleHttp\Client;
 
 class userservice extends BaseService
@@ -52,7 +53,7 @@ class userservice extends BaseService
             throw new ApiException("Captcha error", 20101);
         }
 
-        //todo 插入表
+        return UserModel::saveUser($mobile, $nickname, $password);
 
     }
 }

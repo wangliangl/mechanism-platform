@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-class UserModel extends BaseModel{
+class UserInfoModel extends BaseModel{
 
     protected $table = 'user_info';
 
