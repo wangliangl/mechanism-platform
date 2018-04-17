@@ -32,8 +32,8 @@ $router->group(['prefix' => 'userinfo'], function () use ($router) {
 $router->group(['prefix' => 'department'], function () use ($router) {
     $router->get('index', 'DepartmentController@index');
     $router->get('add', 'DepartmentController@add');
-    $router->post('edit', 'DepartmentController@edit');
-    $router->post('del', 'DepartmentController@delete');
+    $router->get('edit', 'DepartmentController@edit');
+    $router->get('del', 'DepartmentController@del');
 });
 
 
