@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use App\Services\DepartmentService;
 use Illuminate\Http\Request;
+use Validator;
 
 class DepartmentController extends BaseController{
     private $department = null;
@@ -37,10 +38,17 @@ class DepartmentController extends BaseController{
         $name = $request->input("name");
         $desc = $request->input("desc");
 
-        $this->validate($request, [
+        $rules =  [
             'name' => 'required | string',
             'desc' => 'required | string'
-        ]);
+        ];
+        $messages = [
+            'name.required' => '拉裤兜子里',
+            'desc.required' => '王二麻子'
+        ];
+       $validator = Validator::make($request->input(), $rules, $messages);
+       // var_dump($validator->errors()->all());
+        return $this->success();
     }
 
 
