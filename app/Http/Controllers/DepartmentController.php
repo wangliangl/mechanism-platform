@@ -18,21 +18,29 @@ class DepartmentController extends BaseController{
 
     }
 
+    /**
+     * 按照分页获取部门列表
+     */
     public function index(Request $request){
         $name = $request->input("name",false);
         $pageno = $request->input('pageno',1);
         $pagenum = $request->input('pagenum',20);
         $res = $this->department->getDepartmentByCond($name, $pageno, $pagenum);
-
         return $this->success($res);
-
     }
 
 
-    public function add(){
+    /**
+     * 添加部门
+     */
+    public function add(Request $request){
+        $name = $request->input("name");
+        $desc = $request->input("desc");
 
-
-
+        $this->validate($request, [
+            'name' => 'required | string',
+            'desc' => 'required | string'
+        ]);
     }
 
 
