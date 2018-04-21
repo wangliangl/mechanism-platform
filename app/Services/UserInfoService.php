@@ -3,13 +3,16 @@
 namespace App\Services;
 
 use App\Models\UserInfoModel;
+use App\Services\BaseService;
+
 class UserInfoService extends baseservice
 {
 
     /**
      * @desc 添加或者修改
      */
-    public function addOrEdit(){
+    public function addOrEdit($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo)
+    {
         if(empty($id)){
             $model = new UserInfoModel();
         }else{
@@ -32,7 +35,7 @@ class UserInfoService extends baseservice
         $model->depart_id= $depart_id;
         $model->role_id= $role_id;
         $model->desc= $desc;
-        $model->honor_photo= $photo;
+        $model->honor_photo= $honor_photo;
 
         if($model->save()){
             return $model->id;

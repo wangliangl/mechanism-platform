@@ -16,10 +16,12 @@ class UserInfoController extends BaseController{
     private $userInfo;
     private $user;
 
-    public function index(){
-        $this->userInfo = new UserInfoService;
-        $this->user = new UserInfoService;
+    public function __construct(){
+        $this->userInfo = new UserInfoService();
+        $this->user = new UserService();
+    }
 
+    public function index(){
 
     }
 
@@ -57,30 +59,44 @@ class UserInfoController extends BaseController{
 
         // 参数真多
         $name = $request->input("name");
+        $sex = $request->input("sex");
         $idcard = $request->input("idcard");
         $avtar = $request->input("avtar");
         $province = $request->input("province");
         $city = $request->input("city");
         $county = $request->input("county");
         $year = $request->input("year");
-        $montn = $request->input("month");
+        $month = $request->input("month");
         $day = $request->input("day");
         $password = $request->input("password");
         $marriage = $request->input("marriage");
         $healthy = $request->input("healthy");
         $education = $request->input("education");
-        $specialty = $request->input("specialty");
+        $profession = $request->input("profession");
         $school = $request->input("school");
         $phone = $request->input("phone");
         $department = $request->input("deparment");
-        $role = $request->input("role");
+        $address = $request->input("address");
+        $role_id = $request->input("role_id");
+        $depart_id = $request->input("depart_id");
         $email = $request->input("email");
-        $mobile = $request->input("dmobile");
+        $mobile = $request->input("mobile");
         $desc = $request->input("desc");
-        $photo = $request->input("photo");
+        $honor_photo = $request->input("honor_photo");
+        $id = null;
 
-        $this->userInfo->add();
 
+        // 组合字段
+        $brithday = "{$year}-{$month}-{$day}";
+        $native_place = "{$province}-{$city}-{$county}";
+        $res = $this->userInfo->addOrEdit($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo);
+
+        // 保存用户
+        if($res !== false){
+            $this->user->saveUserByinfo($email,$mobile,$password,$res);
+        }
+
+        return $this->success();
     }
 
 
