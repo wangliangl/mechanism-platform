@@ -23,9 +23,9 @@ $router->group(['prefix' => 'user'], function () use ($router) {
 /*********************** 用户信息相关 *************************/
 $router->group(['prefix' => 'userinfo'], function () use ($router) {
     $router->get('index', 'UserInfoController@index');
-    $router->post('add', 'UserInfoController@add');
-    $router->post('edit', 'UserInfoController@edit');
-    $router->post('del', 'UserinfoController@delete');
+    $router->get('add', 'UserInfoController@add');
+    $router->get('edit', 'UserInfoController@edit');
+    $router->get('del', 'UserinfoController@delete');
 });
 
 /*********************** 部门相关 *************************/

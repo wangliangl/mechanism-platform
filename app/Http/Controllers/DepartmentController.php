@@ -36,8 +36,6 @@ class DepartmentController extends BaseController{
      * 添加部门
      */
     public function add(Request $request){
-        $name = $request->input("name");
-        $desc = $request->input("desc");
 
         // 验证规则
         $rules =  [
@@ -51,6 +49,8 @@ class DepartmentController extends BaseController{
         ];
         $this->validate($request,$rules,$messages);
 
+        $name = $request->input("name");
+        $desc = $request->input("desc");
         // 验证部门是否存在
         $cond = [["name","=",$name]];
         $isHave = $this->department->isHaveByCond($cond);
