@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 class UserModel extends BaseModel{
@@ -15,5 +15,7 @@ class UserModel extends BaseModel{
             'create_time' => date('Y-m-d H:i:s', time()),
         ]);
     }
+
+
 
 }
