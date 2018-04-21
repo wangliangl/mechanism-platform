@@ -8,6 +8,33 @@ use App\Services\BaseService;
 class UserInfoService extends baseservice
 {
 
+    public function getUserInfoByCond($name,$depart_id,$pageno,$pagenum){
+        $data = [];
+
+        $offset = ($pageno - 1) * $pagenum;
+        $obj = new UserInfoModel();
+        if($name != false){
+            $obj->where('name', 'like', '%name%');
+        }
+
+        if($depart_id != false){
+            $obj->where('depart_id',$depart_id);
+        }
+
+        $res = $obj->skip($offset)
+            ->take($pagenum)
+            ->get()->toArray();
+
+        if(!empty($res)){
+            foreach($res as $v){
+                $data[$v['id']] = $v['name'];
+            }
+        }
+        return $data;
+
+
+
+    }
     /**
      * @desc 添加或者修改
      */

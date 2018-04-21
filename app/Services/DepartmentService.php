@@ -15,7 +15,7 @@ class DepartmentService extends BaseService
         $offset = ($pageno - 1) * $pagenum;
         $obj = new DepartmentModel();
             if($name != false){
-                $obj->where('name', 'like', '%T%');
+                $obj->where('name', 'like', '%name%');
             }
 
         $res = $obj->skip($offset)

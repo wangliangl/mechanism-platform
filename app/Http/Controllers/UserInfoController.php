@@ -22,7 +22,12 @@ class UserInfoController extends BaseController{
     }
 
     public function index(){
-
+        $name = $request->input("name");
+        $depart_id = $request->input("depart_id",false);
+        $pageno = $request->input('pageno',1);
+        $pagenum = $request->input('pagenum',20);
+        $res = $this->userInfo->getUserInfoByCond($name,$depart_id,$pageno,$pagenum);
+        return $this->success($res);
     }
 
 
@@ -34,7 +39,7 @@ class UserInfoController extends BaseController{
         $rules =  [
             'name' => 'required | string',    // 姓名
             'idcard' => 'required | string',  // 身份证
-            'sex' => 'required | string',      // 性别
+            'sex' => 'required | int',      // 性别
             'avtar' =>  'string',              // 头像
             'province' => 'required | string', // 省
             'city' => 'required | string',     // 市
@@ -101,7 +106,6 @@ class UserInfoController extends BaseController{
 
 
     public function edit(){
-
 
 
     }
