@@ -21,13 +21,25 @@ class UserInfoService extends baseservice
             $obj->where('depart_id',$depart_id);
         }
 
+        $count = $obj->count();
         $res = $obj->skip($offset)
             ->take($pagenum)
             ->get()->toArray();
 
+        $data['list'] = [];
+        $data['total'] = $count;
+
         if(!empty($res)){
             foreach($res as $v){
-                $data[$v['id']] = $v['name'];
+                $tmp['avtar'] = $v['avtar'];
+                $tmp['id'] = $v['id'];
+                $tmp['address'] = $v['address'];
+                $tmp['depart_id'] = $v['depart_id'];
+                $tmp['role_id'] = $v['role_id'];
+                $tmp['sex'] = $v['sex'];
+                $tmp['age'] = 10000;
+                $tmp['phone'] = $v['phone'];
+                array_push($data['list'],$tmp);
             }
         }
         return $data;

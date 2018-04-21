@@ -21,7 +21,7 @@ class UserInfoController extends BaseController{
         $this->user = new UserService();
     }
 
-    public function index(){
+    public function index(Request $request){
         $name = $request->input("name");
         $depart_id = $request->input("depart_id",false);
         $pageno = $request->input('pageno',1);
