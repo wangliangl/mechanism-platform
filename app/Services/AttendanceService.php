@@ -9,6 +9,7 @@ class AttendanceService extends BaseService
 
     public function addAttendance(array $attendance): bool
     {
-        return AttendanceModel::addAttendance($attendance);
+        $result = AttendanceModel::addAttendance($attendance);
+        return ($result instanceof AttendanceModel) ? true :false;
     }
 }
