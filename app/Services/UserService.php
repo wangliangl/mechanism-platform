@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use App\Enum\Code;
 use App\Exceptions\ApiException;
 use App\Models\UserModel;
