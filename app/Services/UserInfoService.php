@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\UserInfoModel;
-use App\Services\BaseService;
 
 class UserInfoService extends baseservice
 {
