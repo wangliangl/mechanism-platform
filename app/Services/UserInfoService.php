@@ -71,7 +71,7 @@ class UserInfoService extends BaseService
         $model->honor_photo = $honor_photo;
         $model->userid = $userid;
         if($model->save()){
-            return true
+            return true;
         }
         return false;
     }
@@ -100,7 +100,7 @@ class UserInfoService extends BaseService
         $model->desc= $desc;
         $model->honor_photo = $honor_photo;
         if($model->save()){
-            return true
+            return true;
         }
         return false;
     }

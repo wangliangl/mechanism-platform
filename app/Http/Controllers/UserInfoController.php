@@ -23,9 +23,9 @@ class UserInfoController extends BaseController{
     }
 
     /*
-     * @desc 通过后天添加用户以及用户信息,完整的添加
+     * @desc 后台完整添加数据
      */
-    public function add_by_admin(Request $request){
+    public function add(Request $request){
         // 验证规则
         $rules =  [
             'name' => 'required | string',    // 姓名
@@ -85,14 +85,12 @@ class UserInfoController extends BaseController{
         $native_place = "{$province}-{$city}-{$county}";
         $res = $this->userInfo->addUserByUserInfo($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo,$userid);
 
-
-
     }
 
     /**
-     * @desc 注册之后的修改
+     * @desc 后台更新数据
      */
-    public function add_by_register(Request $request){
+    public function edit_by_admin(Request $request){
         // 验证规则
         $rules =  [
             'name' => 'required | string',    // 姓名
@@ -165,7 +163,10 @@ class UserInfoController extends BaseController{
     }
 
 
-    public function edit(Request $request){
+    /**
+     * @desc 注册之后更新数据
+     */
+    public function edit_by_register(Request $request){
         // 参数真多
         $name = $request->input("name");
         $sex = $request->input("sex");

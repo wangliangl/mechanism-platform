@@ -23,11 +23,11 @@ $router->group(['prefix' => 'user'], function () use ($router) {
 
 /*********************** 用户信息相关 *************************/
 $router->group(['prefix' => 'userinfo'], function () use ($router) {
-    $router->get('add_by_register', 'UserInfoController@add_by_register');    // 注册添加
-    $router->get('add_by_admin', 'UserInfoController@add_by_admin');          // 后台添加
-    $router->get('edit', 'UserInfoController@edit');                          // 更新信息
-    $router->get('del', 'UserInfoController@del');                            // 删除用户
-    $router->get('detail', 'UserInfoController@detail');                      // 根据用户id获取详情
+    $router->get('add', 'UserInfoController@add_by_register');              // 后台用户添加
+    $router->get('edit_by_admin', 'UserInfoController@add_by_admin');       // 后天更新
+    $router->get('edit_by_register', 'UserInfoController@edit');            // 注册后天更新
+    $router->get('del', 'UserInfoController@del');                          // 删除用户
+    $router->get('detail', 'UserInfoController@detail');                    // 根据用户id获取详情
 });
 
 /*********************** 部门相关 *************************/
