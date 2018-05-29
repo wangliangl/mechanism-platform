@@ -59,14 +59,17 @@ class userservice extends BaseService
     /**
      * @desc 创建用户时，保存用户
      */
-    public function saveUserByinfo($email,$mobile,$password,$info_id){
+    public function saveUserByinfo($email,$mobile,$password,$is_add_info){
         $model = new UserModel();
         $model->email = $email;
         $model->mobile = $mobile;
         $model->password = $password;
-        $model->info_id = $info_id;
+        $model->is_add_info = $is_add_info;
         $model->create_time = date("Y-m-d H:i:s");
         $model->update_time = date("Y-m-d H:i:s");
-        $model->save();
+        if($model->save()){
+            return $model->id;
+        }
+        return false;
     }
 }
