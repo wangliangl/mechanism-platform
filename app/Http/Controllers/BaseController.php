@@ -13,7 +13,7 @@ class BaseController extends LumenController
         return $this->success($data, $msg, $code);
     }
 
-    public function success(array $data = [], string $msg = 'success', int $code = 200)
+    public function success(array $data = [], string $msg = 'success', int $code = 0)
     {
         $responseData = [
             'code' => (Int)$code,
