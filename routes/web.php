@@ -25,7 +25,7 @@ $router->group(['prefix' => 'userinfo'], function () use ($router) {
     $router->get('index', 'UserInfoController@index');
     $router->get('add', 'UserInfoController@add');
     $router->get('edit', 'UserInfoController@edit');
-    $router->get('del', 'UserInfoController@delete');
+    $router->get('del', 'UserInfoController@del');
     $router->get('detail', 'UserInfoController@detail');
 });
 

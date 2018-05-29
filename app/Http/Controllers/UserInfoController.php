@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 use App\Services\UserInfoService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use App\Exceptions\ApiException;
 
 class UserInfoController extends BaseController{
 
@@ -93,15 +94,17 @@ class UserInfoController extends BaseController{
         $honor_photo = $request->input("honor_photo");
         $id = null;
 
-
-        // 组合字段
-        $brithday = "{$year}-{$month}-{$day}";
-        $native_place = "{$province}-{$city}-{$county}";
-        $res = $this->userInfo->addOrEdit($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo);
-
+        // 先添加用户数据
+        $is_add_info = 1;
+        $userid = $this->user->saveUserByinfo($email,$mobile,$password,$is_add_info);
         // 保存用户
-        if($res !== false){
-            $this->user->saveUserByinfo($email,$mobile,$password,$res);
+        if($userid !== false){
+            // 组合字段
+            $brithday = "{$year}-{$month}-{$day}";
+            $native_place = "{$province}-{$city}-{$county}";
+            $res = $this->userInfo->addUserByUserInfo($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo,$userid);
+
+
         }
 
         return $this->success();
@@ -137,20 +140,22 @@ class UserInfoController extends BaseController{
         $honor_photo = $request->input("honor_photo");
         $id = $request->input("id");
 
-
-        // 组合字段
         $brithday = "{$year}-{$month}-{$day}";
         $native_place = "{$province}-{$city}-{$county}";
-        $res = $this->userInfo->addOrEdit($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo);
-
-
+        $res = $this->userInfo->edit($id,$name,$sex,$avtar,$brithday,$native_place,$idcard,$address,$marriage,$healthy,$education,$profession,$school,$phone,$depart_id,$role_id,$desc,$honor_photo);
+        return $this->success();
     }
 
     /**
      *@desc 删除用户
      */
     public function del(Request $request){
-
+        $id = $request->input("id");
+        $res = $this->userInfo->del($id);
+        if (!$res){
+            throw new ApiException("Captcha error", 20101);
+        }
+        return $this->success([]);
 
     }
 
@@ -160,8 +165,8 @@ class UserInfoController extends BaseController{
     public function detail(Request $request){
         $id = $request->input("id");
         $res = $this->userInfo->detail($id);
-        if (empty($res)){
-
+        if (!empty($res)){
+            throw new ApiException("Captcha error", 20101);
         }
         return $this->success($res);
     }
