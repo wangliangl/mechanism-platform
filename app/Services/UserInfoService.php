@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\UserInfoModel;
 
-class UserInfoService extends baseservice
+class UserInfoService extends BaseService
 {
 
     public function getUserInfoByCond($name,$depart_id,$pageno,$pagenum){
@@ -91,4 +91,14 @@ class UserInfoService extends baseservice
             return true;
         return false;
     }
+
+    /**
+     *@desc 获取用户详情
+     */
+    public function detail($id)
+    {
+        $model = UserInfoModel::where('id',$id)->first()->toArray();
+        return $model;
+    }
+
 }

@@ -25,7 +25,8 @@ $router->group(['prefix' => 'userinfo'], function () use ($router) {
     $router->get('index', 'UserInfoController@index');
     $router->get('add', 'UserInfoController@add');
     $router->get('edit', 'UserInfoController@edit');
-    $router->get('del', 'UserinfoController@delete');
+    $router->get('del', 'UserInfoController@delete');
+    $router->get('detail', 'UserInfoController@detail');
 });
 
 /*********************** 部门相关 *************************/

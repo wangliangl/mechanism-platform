@@ -146,9 +146,23 @@ class UserInfoController extends BaseController{
 
     }
 
-    public function del(){
+    /**
+     *@desc 删除用户
+     */
+    public function del(Request $request){
 
 
+    }
 
+    /**
+     * @desc 获取当个用户详情
+     */
+    public function detail(Request $request){
+        $id = $request->input("id");
+        $res = $this->userInfo->detail($id);
+        if (empty($res)){
+
+        }
+        return $this->success($res);
     }
 }
