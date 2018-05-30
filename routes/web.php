@@ -16,16 +16,18 @@ $router->get('/', function () use ($router){
 
 /*----------------------- 用户相关 ---------------------------*/
 $router->group(['prefix' => 'user'], function () use ($router) {
-    $router->get('getCaptcha', 'UserController@getCaptcha');
-    $router->post('register', 'UserController@register');
+    $router->get('getCaptcha', 'UserController@getCaptcha');   // 不jb知道
+    $router->get('list', 'UserController@index');              // 获取用户列表
+    $router->post('register', 'UserController@register');      // 用户注册
 });
 
 /*********************** 用户信息相关 *************************/
 $router->group(['prefix' => 'userinfo'], function () use ($router) {
-    $router->get('index', 'UserInfoController@index');
-    $router->get('add', 'UserInfoController@add');
-    $router->get('edit', 'UserInfoController@edit');
-    $router->get('del', 'UserinfoController@delete');
+    $router->get('add', 'UserInfoController@add_by_register');              // 后台用户添加
+    $router->get('edit_by_admin', 'UserInfoController@add_by_admin');       // 后天更新
+    $router->get('edit_by_register', 'UserInfoController@edit');            // 注册后天更新
+    $router->get('del', 'UserInfoController@del');                          // 删除用户
+    $router->get('detail', 'UserInfoController@detail');                    // 根据用户id获取详情
 });
 
 /*********************** 部门相关 *************************/
